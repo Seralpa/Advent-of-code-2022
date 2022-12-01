@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# vscode stuff
+.vscode
+
+# random tests outputs and inputs
+test*
+*.out
+*.txt
