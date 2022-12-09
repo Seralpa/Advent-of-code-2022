@@ -5,7 +5,7 @@ cwd = os.path.dirname(os.path.abspath(__file__))
 with open(f"{cwd}/input.txt") as f:
 	data = [l.strip().split(" ") for l in f.read().splitlines()]
 
-root = Dir(parent=None, name="/", files=[], dirs=[])
+root = Dir(parent=None, name="/", files=[], dirs=[]) # type: ignore
 curr_dir = root
 for l in data:
 	match l:

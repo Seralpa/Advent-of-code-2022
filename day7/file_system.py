@@ -30,6 +30,8 @@ class Dir:
 		for d in self.dirs:
 			if d.name == name:
 				return d
+		print(f"{name} not found")
+		exit()
 
 	def append_elegible_subdirs(self, elegible: list[Dir], criteria: Callable[[Dir], bool]):
 		if criteria(self):
