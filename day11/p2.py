@@ -2,12 +2,13 @@ from __future__ import annotations
 from dataclasses import dataclass
 import os
 import math
+from types import CodeType
 
 
 @dataclass
 class Monkey:
 	items: list[int]
-	op: str
+	op: CodeType
 	test: int
 	next_id: tuple[int, int]
 	inspected: int = 0
@@ -37,7 +38,7 @@ divisor = 1
 for m in data:
 	items = list(map(int, m[1].split(", ")))
 	divisor *= int(m[3])
-	monkeys.append(Monkey(items, op=m[2], test=int(m[3]), next_id=(int(m[4]), int(m[5]))))
+	monkeys.append(Monkey(items, op=compile(m[2], "op", "eval"), test=int(m[3]), next_id=(int(m[4]), int(m[5]))))
 
 for round in range(10000):
 	for m in monkeys:
