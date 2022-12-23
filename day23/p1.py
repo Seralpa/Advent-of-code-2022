@@ -30,11 +30,8 @@ def count_spaces(elves: list[Elf]):
 	return count
 
 
-fname = "input.txt"
-fname = "inputtest.txt"
-
 cwd = os.path.dirname(os.path.abspath(__file__))
-with open(f"{cwd}/{fname}") as f:
+with open(f"{cwd}/input.txt") as f:
 	elves = [(i, j) for i, r in enumerate(f.read().splitlines()) for j, c in enumerate(r) if c == "#"]
 
 dir_order = 0
