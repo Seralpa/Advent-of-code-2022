@@ -29,6 +29,9 @@ for c in instrucctions:
 		ins_list.append(c)
 	else:
 		curr_num += c
+
+if curr_num != "":
+	ins_list.append(int(curr_num))
 board = [list(r) for r in board.splitlines()]
 
 dir_idx = 0
