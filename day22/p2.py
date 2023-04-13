@@ -27,19 +27,16 @@ board = [list(r) for r in board.splitlines()]
 
 side = 50
 wrap_dict = ({((0, j), 3): ((i2, 0), 0) for j, i2 in zip(range(side, 2 * side), range(3 * side, 4 * side))} |
-             {((i, 0), 2): ((0, j2), 1) for i, j2 in zip(range(3 * side, 4 * side), range(side, 2 * side))} |
              {(((4 * side) - 1, j), 1): ((0, j2), 1) for j, j2 in zip(range(0, side), range(2 * side, 3 * side))} |
-             {((0, j), 3): (((4 * side) - 1, j2), 3) for j, j2 in zip(range(2 * side, 3 * side), range(0, side))} |
              {(((3 * side) - 1, j), 1): ((i2, side - 1), 2) for j, i2 in zip(range(side, 2 * side), range(3 * side, 4 * side))} |
-             {((i, side - 1), 0): (((3 * side) - 1, j2), 3) for i, j2 in zip(range(3 * side, 4 * side), range(side, 2 * side))} |
              {((i, (3 * side) - 1), 0): ((i2, (2 * side) - 1), 2) for i, i2 in zip(reversed(range(0, side)), range(2 * side, 3 * side))} |
-             {((i, (2 * side) - 1), 0): ((i2, (3 * side) - 1), 2) for i, i2 in zip(range(2 * side, 3 * side), reversed(range(0, side)))} |
              {((side - 1, j), 1): ((i2, (2 * side) - 1), 2) for j, i2 in zip(range(2 * side, 3 * side), range(side, 2 * side))} |
-             {((i, (2 * side) - 1), 0): ((side - 1, j2), 3) for i, j2 in zip(range(side, 2 * side), range(2 * side, 3 * side))} |
              {((i, side), 2): ((2 * side, j2), 1) for i, j2 in zip(range(side, 2 * side), range(0, side))} |
-             {((2 * side, j), 3): ((i2, side), 0) for j, i2 in zip(range(0, side), range(side, 2 * side))} |
-             {((i, 0), 2): ((i2, side), 0) for i, i2 in zip(range(2 * side, 3 * side), reversed(range(0, side)))} |
-             {((i, side), 2): ((i2, 0), 0) for i, i2 in zip(reversed(range(0, side)), range(2 * side, 3 * side))})
+             {((i, 0), 2): ((i2, side), 0) for i, i2 in zip(range(2 * side, 3 * side), reversed(range(0, side)))})
+aux = dict()
+for k, v in wrap_dict.items():
+	aux[v[0], (v[1] + 2) % 4] = (k[0], (k[1] + 2) % 4)
+wrap_dict.update(aux)
 
 dir_idx = 0
 pos = (0, board[0].index("."))
